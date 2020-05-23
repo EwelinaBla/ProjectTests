@@ -26,6 +26,7 @@ public class PaymentTests extends BaseTest {
     String existentEmailPassword = "CSSXPATH123";
     String wrongEmail = "11onet";
     String wrongPhoneNumber = "aaabbbccc";
+
     //endregion
     @Test
     public void buyWithoutAccountTest() {
@@ -33,19 +34,21 @@ public class PaymentTests extends BaseTest {
         categoryPage.footerAlertPage.close();
         CartPage cartPage = categoryPage.addToCart(productId).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
-        ReceivedOrderPage receivedOrderPage = paymentPage.fillPaymentDetails(
-                firstName,
-                lastName,
-                countryCode,
-                address,
-                city,
-                region,
-                postCode,
-                phoneNumber,
-                paymentPage.generatedEmail())
+        ReceivedOrderPage receivedOrderPage = paymentPage
+                .fillPaymentDetails(
+                        firstName,
+                        lastName,
+                        countryCode,
+                        address,
+                        city,
+                        region,
+                        postCode,
+                        phoneNumber,
+                        paymentPage.generatedEmail())
                 .fillCartInformation(numberCart, expirationDate, cvc)
                 .checkboxAcceptanceOfRegulations(true)
                 .buyAndPay();
+
         String numberOrder = receivedOrderPage.getNumberOrder();
 
         Assertions.assertTrue(numberOrder != null,
@@ -58,21 +61,24 @@ public class PaymentTests extends BaseTest {
         categoryPage.footerAlertPage.close();
         CartPage cartPage = categoryPage.addToCart(productId).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
-        ReceivedOrderPage receivedOrderPage = paymentPage.fillPaymentDetails(
-                firstName,
-                lastName,
-                countryCode,
-                address,
-                city,
-                region,
-                postCode,
-                phoneNumber,
-                paymentPage.generatedEmail())
+        ReceivedOrderPage receivedOrderPage = paymentPage
+                .fillPaymentDetails(
+                        firstName,
+                        lastName,
+                        countryCode,
+                        address,
+                        city,
+                        region,
+                        postCode,
+                        phoneNumber,
+                        paymentPage.generatedEmail())
                 .createAccount(password)
                 .fillCartInformation(numberCart, expirationDate, cvc)
                 .checkboxAcceptanceOfRegulations(true)
                 .buyAndPay();
+
         String numberOrder = receivedOrderPage.getNumberOrder();
+
         AccountPage accountPage = new AccountPage(driver).header.goToMyAccount();
         String numberOrderInMyAccount = accountPage.getNumberOrderInMyAccount();
         accountPage.goTo(myAccountUrl).removeAccount();
@@ -88,12 +94,15 @@ public class PaymentTests extends BaseTest {
         categoryPage.footerAlertPage.close();
         CartPage cartPage = categoryPage.addToCart(productId).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
+
         ReceivedOrderPage receivedOrderPage = paymentPage
                 .loginAsUser(existentEmail, existentEmailPassword)
                 .fillCartInformation(numberCart, expirationDate, cvc)
                 .checkboxAcceptanceOfRegulations(true)
                 .buyAndPay();
+
         String numberOrder = receivedOrderPage.getNumberOrder();
+
         AccountPage accountPage = new AccountPage(driver).header.goToMyAccount();
         String numberOrderInMyAccount = accountPage.getNumberOrderInMyAccount();
 
@@ -107,10 +116,12 @@ public class PaymentTests extends BaseTest {
         categoryPage.footerAlertPage.close();
         CartPage cartPage = categoryPage.addToCart(productId).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
+
         ReceivedOrderPage receivedOrderPage = paymentPage.selectCheckboxCreateAccount()
                 .fillCartInformation(numberCart, expirationDate, cvc)
                 .checkboxAcceptanceOfRegulations(false)
                 .buyAndPay();
+
         int numberErrorMessages = receivedOrderPage.getSizeListAlertMessage();
 
         Assertions.assertEquals(9, numberErrorMessages,
@@ -175,19 +186,21 @@ public class PaymentTests extends BaseTest {
         categoryPage.footerAlertPage.close();
         CartPage cartPage = categoryPage.addToCart(productId).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
-        ReceivedOrderPage receivedOrderPage = paymentPage.fillPaymentDetails(
-                firstName,
-                lastName,
-                countryCode,
-                address,
-                city,
-                region,
-                postCode,
-                phoneNumber,
-                wrongEmail)
+        ReceivedOrderPage receivedOrderPage = paymentPage
+                .fillPaymentDetails(
+                        firstName,
+                        lastName,
+                        countryCode,
+                        address,
+                        city,
+                        region,
+                        postCode,
+                        phoneNumber,
+                        wrongEmail)
                 .fillCartInformation(numberCart, expirationDate, cvc)
                 .checkboxAcceptanceOfRegulations(true)
                 .buyAndPay();
+
         String errorMessage = receivedOrderPage.getAlert();
         String expectedErrorMessage = "Invalid email address, please correct and try again.";
 
@@ -201,19 +214,21 @@ public class PaymentTests extends BaseTest {
         categoryPage.footerAlertPage.close();
         CartPage cartPage = categoryPage.addToCart(productId).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
-        ReceivedOrderPage receivedOrderPage = paymentPage.fillPaymentDetails(
-                firstName,
-                lastName,
-                countryCode,
-                address,
-                city,
-                region,
-                postCode,
-                wrongPhoneNumber,
-                paymentPage.generatedEmail())
+        ReceivedOrderPage receivedOrderPage = paymentPage
+                .fillPaymentDetails(
+                        firstName,
+                        lastName,
+                        countryCode,
+                        address,
+                        city,
+                        region,
+                        postCode,
+                        wrongPhoneNumber,
+                        paymentPage.generatedEmail())
                 .fillCartInformation(numberCart, expirationDate, cvc)
                 .checkboxAcceptanceOfRegulations(true)
                 .buyAndPay();
+
         int numberErrorMessages = receivedOrderPage.getSizeListAlertMessage();
 
         Assertions.assertEquals(1, numberErrorMessages,

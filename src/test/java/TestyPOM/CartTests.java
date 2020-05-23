@@ -21,6 +21,7 @@ public class CartTests extends BaseTest {
         ProductPage productPage = new ProductPage(driver).goTo(productUrl);
         productPage.footerAlertPage.close();
         boolean isProductInCart = productPage.addToCart().viewCart().isProductInCart(productId);
+
         assertTrue(isProductInCart,
                 "Product with id=" + productId + " (Wspinaczka Via Ferraty) was not found in cart");
     }
@@ -40,6 +41,7 @@ public class CartTests extends BaseTest {
         ProductPage productPage = new ProductPage(driver).goTo(productUrl);
         productPage.footerAlertPage.close();
         int quantityOfProduct = productPage.addToCart(quantity).viewCart().getProductQuantity();
+
         Assertions.assertEquals(10, quantityOfProduct,
                 "Quantity of the product is not what expected");
     }

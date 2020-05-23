@@ -25,6 +25,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.Properties;
 
 public class BaseTest {
+    private static String storUrl;
     protected WebDriver driver;
     protected static String baseUrl;
     private static String hubUrl;
@@ -36,10 +37,11 @@ public class BaseTest {
     @BeforeAll
     public static void loadConfig() throws IOException {
         Properties properties = new Properties();
-        properties.load(new FileInputStream("C:\\Users\\Paweł\\IdeaProjects\\Project\\src\\Configs\\Configurations.properties"));
+        properties.load(new FileInputStream("src/Configs/Configurations.properties"));
         hubUrl = properties.getProperty("hubUrl");
         baseUrl = properties.getProperty("baseUrl");
         browser = properties.getProperty("browser");
+        storUrl = properties.getProperty("storeUrl");
     }
 
     @BeforeEach
@@ -48,13 +50,14 @@ public class BaseTest {
         WebDriverManager.chromedriver().setup();
         this.driver = new ChromeDriver();
 
+//          Grid
 //        DriverFactory driverFactory=new DriverFactory();
 //        driver=driverFactory.create(Browser.valueOf(browser), hubUrl);
 
         driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
-        driver.navigate().to("https://fakestore.testelka.pl/");
+        driver.navigate().to(storUrl);
     }
 
     @AfterEach
@@ -68,7 +71,7 @@ public class BaseTest {
     private String screenshot(TestInfo info) throws IOException {
         File screen = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH-mm-ss");
-        String path = "C:\\Users\\Paweł\\Downloads\\ScreenShots\\" + info.getDisplayName() + formatter.format(LocalDateTime.now()) + ".jpg";
+        String path = "C:\\Projects\\ProjectTests\\ScreenShot\\" + info.getDisplayName() + formatter.format(LocalDateTime.now()) + ".jpg";
         FileUtils.copyFile(screen, new File(path));
         return path;
     }
