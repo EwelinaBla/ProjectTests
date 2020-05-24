@@ -1,8 +1,6 @@
 package TestyPOM;
 
-import Drivers.DriverFactory;
 import Helpers.StatusTest;
-import Drivers.Browser;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.AfterEach;
@@ -25,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.Properties;
 
 public class BaseTest {
-    private static String storUrl;
+    private static String storeUrl;
     protected WebDriver driver;
     protected static String baseUrl;
     private static String hubUrl;
@@ -41,7 +39,7 @@ public class BaseTest {
         hubUrl = properties.getProperty("hubUrl");
         baseUrl = properties.getProperty("baseUrl");
         browser = properties.getProperty("browser");
-        storUrl = properties.getProperty("storeUrl");
+        storeUrl = properties.getProperty("storeUrl");
     }
 
     @BeforeEach
@@ -51,13 +49,13 @@ public class BaseTest {
         this.driver = new ChromeDriver();
 
 //          Grid
-//        DriverFactory driverFactory=new DriverFactory();
+//        WebDriverFactory driverFactory=new WebDriverFactory();
 //        driver=driverFactory.create(Browser.valueOf(browser), hubUrl);
 
         driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
-        driver.navigate().to(storUrl);
+        driver.navigate().to(storeUrl);
     }
 
     @AfterEach
@@ -71,7 +69,7 @@ public class BaseTest {
     private String screenshot(TestInfo info) throws IOException {
         File screen = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH-mm-ss");
-        String path = "C:\\Projects\\ProjectTests\\ScreenShot\\" + info.getDisplayName() + formatter.format(LocalDateTime.now()) + ".jpg";
+        String path = "C:\\Projects\\ProjectTests\\src\\main\\resources\\ScreenShot\\" + info.getDisplayName() + formatter.format(LocalDateTime.now()) + ".jpg";
         FileUtils.copyFile(screen, new File(path));
         return path;
     }

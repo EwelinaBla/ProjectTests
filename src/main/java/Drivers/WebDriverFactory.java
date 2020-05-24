@@ -9,7 +9,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class DriverFactory {
+public class WebDriverFactory {
 
     public WebDriver create(Browser browserType, String hubUrl) throws MalformedURLException {
         switch (browserType){
@@ -18,7 +18,7 @@ public class DriverFactory {
             case FIREFOX:
                 return getFirefoxDriver(hubUrl);
                 default:
-                    throw new IllegalArgumentException("Browser doesn't exist");
+                    throw new IllegalArgumentException("Not supported browser " + browserType);
         }
     }
 
