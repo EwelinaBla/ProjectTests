@@ -32,7 +32,7 @@ public class ProductPage extends BasePage {
     }
 
     public CartPage viewCart() {
-        wait.until(ExpectedConditions.elementToBeClickable(buttonViewCartPath)).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(buttonViewCartPath)).click();
         return new CartPage(driver);
     }
 
