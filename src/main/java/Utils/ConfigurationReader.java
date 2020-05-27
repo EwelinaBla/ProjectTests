@@ -1,31 +1,18 @@
 package Utils;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
+public class ConfigurationReader extends FileReader{
+    private String configurationLocation;
 
-public class ConfigurationReader {
     private String baseUrl;
     private String hubUrl;
     private String browser;
-    private final String configurationLocation = "src/Configs/Configurations.properties";
-    Properties properties;
 
-    public ConfigurationReader() {
-        loadFile();
-        loadData();
+    public ConfigurationReader(String configurationLocation) {
+        super(configurationLocation);
+        this.configurationLocation=configurationLocation;
     }
 
-    private void loadFile() {
-        properties = new Properties();
-        try {
-            properties.load(new FileInputStream(getConfigurationLocation()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void loadData() {
+    void loadData() {
         hubUrl = properties.getProperty("hubUrl");
         baseUrl = properties.getProperty("baseUrl");
         browser = properties.getProperty("browser");
