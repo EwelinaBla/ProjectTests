@@ -39,6 +39,7 @@ public class CartPage extends BasePage {
     }
 
     public CartPage changeProductAmount(int quantity) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(quantityPath));
         WebElement quantityField = driver.findElement(quantityPath);
         quantityField.clear();
         quantityField.sendKeys(String.valueOf(quantity));
@@ -54,7 +55,7 @@ public class CartPage extends BasePage {
     }
 
     public Boolean noExistsProductInCart(String productId) {
-        driver.navigate().refresh();
+        wait.until(ExpectedConditions.presenceOfElementLocated(communiquePath));
         boolean present;
         try {
             By removeProductButtonPath = By.xpath(removeProductButtonLocator.replace("<productId>", productId));
@@ -86,7 +87,6 @@ public class CartPage extends BasePage {
 
     public void waitForShopTable() {
         wait.until(ExpectedConditions.presenceOfElementLocated(shopTablePath));
-
     }
 
     public String getNameProduct() {
