@@ -12,19 +12,20 @@ public class CartPage extends BasePage {
 
     public CartPage(WebDriver driver) {
         super(driver);
-        wait = new WebDriverWait(driver, 5);
+        wait = new WebDriverWait(driver, 7);
     }
 
     private By shopTablePath = By.xpath(".//form//*[contains(@class,'shop_table')]");
     private By productQuantityFieldPath = By.xpath(".//div[@class='quantity']//input");
     private By removeProductButtonPath = By.xpath(".//*[contains(@class,'cart_item')]");
-    private By quantityPath = By.xpath(".//tbody/tr[1]/td[5]/div/input");
+    private By quantityPath = By.xpath(".//input[contains(@class,'qty')]");
     private By buttonUpdatePath = By.xpath(".//*[@id='post-6']/div/div/form/table/tbody/tr[2]/td/button");
-    private String removeProductButtonLocator = ".//a[@data-product_id='<productId>']";
     private By buttonGoToCashPath = By.xpath(".//a[contains(@class,'checkout-button')]");
     private By nameProductInCartPath = By.xpath(".//*[@class='product-name']/a");
     private By priceProductInCartPath = By.xpath(".//*[@class='product-price']//*[contains(@class, 'Price-amount')]");
     private By quantityInCartPath = By.xpath(".//div[@class='quantity']//input");
+    private By communiquePath=By.xpath(".//div[@class='woocommerce-message' and @role='alert']");
+    private String removeProductButtonLocator = ".//a[@data-product_id='<productId>']";
 
     public int getProductQuantity() {
         String quantityInCart = wait.until(ExpectedConditions.visibilityOfElementLocated(productQuantityFieldPath)).getAttribute("value");

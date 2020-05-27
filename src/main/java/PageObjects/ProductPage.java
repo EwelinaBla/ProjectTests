@@ -18,7 +18,7 @@ public class ProductPage extends BasePage {
     }
 
     private By buttonAddToCartButtonPath = By.xpath(".//button[@name='add-to-cart']");
-    private By buttonViewCartPath = By.xpath(".//div[@role='alert']//a");
+    private By buttonViewCartPath = By.xpath(".//div[@class='woocommerce-message']//a[contains(@class, 'button')]");
     private By productQuantityPath = By.xpath(".//form/div[1]/input");
 
     public ProductPage goTo(String productUrl) {
