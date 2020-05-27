@@ -1,5 +1,6 @@
 package Drivers;
 
+import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
@@ -11,26 +12,37 @@ import java.net.URL;
 
 public class WebDriverFactory {
 
-    public WebDriver create(Browser browserType, String hubUrl) throws MalformedURLException {
-        switch (browserType){
+    private RemoteWebDriver driver;
+
+    public WebDriver create(Browser browserType, String hubUrl) {
+        switch (browserType) {
             case CHROME:
                 return getChromeDriver(hubUrl);
             case FIREFOX:
                 return getFirefoxDriver(hubUrl);
-                default:
-                    throw new IllegalArgumentException("Not supported browser " + browserType);
+            default:
+                throw new IllegalArgumentException("Not supported browser " + browserType);
         }
     }
 
-    private WebDriver getFirefoxDriver(String hubUrl) throws MalformedURLException {
-        FirefoxOptions options=new FirefoxOptions();
-        return new RemoteWebDriver(new URL(hubUrl),options);
+    private WebDriver getFirefoxDriver(String hubUrl) {
+        FirefoxOptions options = new FirefoxOptions();
+        return getDriver(hubUrl, options);
     }
 
-    private WebDriver getChromeDriver(String hubUrl) throws MalformedURLException {
-        ChromeOptions options=new ChromeOptions();
+    private WebDriver getChromeDriver(String hubUrl) {
+        ChromeOptions options = new ChromeOptions();
         options.setCapability(CapabilityType.VERSION, "81");
-        return new RemoteWebDriver(new URL(hubUrl),options);
+        return getDriver(hubUrl, options);
     }
 
+    private WebDriver getDriver(String hubUrl, MutableCapabilities options) {
+        try {
+            driver = new RemoteWebDriver(new URL(hubUrl), options);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            System.out.println("HubUrl in the configurations file is incorrect or missing");
+        }
+        return driver;
+    }
 }
