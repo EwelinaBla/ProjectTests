@@ -5,47 +5,24 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class PaymentGatewayTest extends BaseTest {
-    //region VARIABLES
-    String categoryUrl = "/product-category/wspinaczka/";
-    String productId = "40";
-    String phoneNumber = "123123123";
-    String correctNumberCart = "378282246310005";
-    String declinedNumberCart3DSecure = "4000008400001629";
-    String incorrectNumberCart = "1000000000001111";
-    String numberCart3DSecure = "4000000000003220";
-    String incompleteNumberCart = "1000";
-    String expirationDate = "12/22";
-    String wrongExpirationDate = "1111";
-    String incompleteExpirationDate = "11";
-    String cvc = "111";
-    String incompleteCvc = "1";
-    String firstName = "Jan";
-    String lastName = "Kowalski";
-    String address = "Misia 77";
-    String city = "Warszawa";
-    String region = "Mazowieckie";
-    String postCode = "00-121";
-    String countryCode = "AD";
-
-    //endregion
     @Test
     public void incorrectNumberCartTest() {
-        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl()+categoryUrl);
+        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
-        CartPage cartPage = categoryPage.addToCart(productId).viewCart();
+        CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
         ReceivedOrderPage receivedOrderPage = paymentPage
                 .fillPaymentDetails(
-                        firstName,
-                        lastName,
-                        countryCode,
-                        address,
-                        city,
-                        region,
-                        postCode,
-                        phoneNumber,
+                        testData.getTestData().getFirstName(),
+                        testData.getTestData().getLastName(),
+                        testData.getTestData().getCountryCode(),
+                        testData.getTestData().getAddress(),
+                        testData.getTestData().getCity(),
+                        testData.getTestData().getRegion(),
+                        testData.getTestData().getPostCode(),
+                        testData.getTestData().getPhoneNumber(),
                         paymentPage.generatedEmail())
-                .fillCartInformation(incorrectNumberCart, expirationDate, cvc)
+                .fillCartInformation(testData.getTestData().getIncorrectNumberCart(), testData.getTestData().getExpirationDate(), testData.getTestData().getCvc())
                 .checkboxAcceptanceOfRegulations(true)
                 .buyAndPay();
 
@@ -58,22 +35,22 @@ public class PaymentGatewayTest extends BaseTest {
 
     @Test
     public void incompleteNumberCartTest() {
-        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl()+categoryUrl);
+        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
-        CartPage cartPage = categoryPage.addToCart(productId).viewCart();
+        CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
         ReceivedOrderPage receivedOrderPage = paymentPage
                 .fillPaymentDetails(
-                        firstName,
-                        lastName,
-                        countryCode,
-                        address,
-                        city,
-                        region,
-                        postCode,
-                        phoneNumber,
+                        testData.getTestData().getFirstName(),
+                        testData.getTestData().getLastName(),
+                        testData.getTestData().getCountryCode(),
+                        testData.getTestData().getAddress(),
+                        testData.getTestData().getCity(),
+                        testData.getTestData().getRegion(),
+                        testData.getTestData().getPostCode(),
+                        testData.getTestData().getPhoneNumber(),
                         paymentPage.generatedEmail())
-                .fillCartInformation(incompleteNumberCart, expirationDate, cvc)
+                .fillCartInformation(testData.getTestData().getIncompleteNumberCart(), testData.getTestData().getExpirationDate(), testData.getTestData().getIncompleteCvc())
                 .checkboxAcceptanceOfRegulations(true)
                 .buyAndPay();
 
@@ -86,22 +63,22 @@ public class PaymentGatewayTest extends BaseTest {
 
     @Test
     public void incorrectExpirationDateTest() {
-        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl()+categoryUrl);
+        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
-        CartPage cartPage = categoryPage.addToCart(productId).viewCart();
+        CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
         ReceivedOrderPage receivedOrderPage = paymentPage
                 .fillPaymentDetails(
-                        firstName,
-                        lastName,
-                        countryCode,
-                        address,
-                        city,
-                        region,
-                        postCode,
-                        phoneNumber,
+                        testData.getTestData().getFirstName(),
+                        testData.getTestData().getLastName(),
+                        testData.getTestData().getCountryCode(),
+                        testData.getTestData().getAddress(),
+                        testData.getTestData().getCity(),
+                        testData.getTestData().getRegion(),
+                        testData.getTestData().getPostCode(),
+                        testData.getTestData().getPhoneNumber(),
                         paymentPage.generatedEmail())
-                .fillCartInformation(correctNumberCart, wrongExpirationDate, cvc)
+                .fillCartInformation(testData.getTestData().getCorrectNumberCart(), testData.getTestData().getWrongExpirationDate(), testData.getTestData().getIncompleteCvc())
                 .checkboxAcceptanceOfRegulations(true)
                 .buyAndPay();
 
@@ -114,22 +91,22 @@ public class PaymentGatewayTest extends BaseTest {
 
     @Test
     public void incompleteExpirationDateTest() {
-        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl()+categoryUrl);
+        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
-        CartPage cartPage = categoryPage.addToCart(productId).viewCart();
+        CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
         ReceivedOrderPage receivedOrderPage = paymentPage
                 .fillPaymentDetails(
-                        firstName,
-                        lastName,
-                        countryCode,
-                        address,
-                        city,
-                        region,
-                        postCode,
-                        phoneNumber,
+                        testData.getTestData().getFirstName(),
+                        testData.getTestData().getLastName(),
+                        testData.getTestData().getCountryCode(),
+                        testData.getTestData().getAddress(),
+                        testData.getTestData().getCity(),
+                        testData.getTestData().getRegion(),
+                        testData.getTestData().getPostCode(),
+                        testData.getTestData().getPhoneNumber(),
                         paymentPage.generatedEmail())
-                .fillCartInformation(correctNumberCart, incompleteExpirationDate, cvc)
+                .fillCartInformation(testData.getTestData().getCorrectNumberCart(), testData.getTestData().getIncompleteExpirationDate(), testData.getTestData().getIncompleteCvc())
                 .checkboxAcceptanceOfRegulations(true)
                 .buyAndPay();
 
@@ -142,22 +119,22 @@ public class PaymentGatewayTest extends BaseTest {
 
     @Test
     public void incompleteCvcTest() {
-        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl()+categoryUrl);
+        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
-        CartPage cartPage = categoryPage.addToCart(productId).viewCart();
+        CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
         ReceivedOrderPage receivedOrderPage = paymentPage
                 .fillPaymentDetails(
-                        firstName,
-                        lastName,
-                        countryCode,
-                        address,
-                        city,
-                        region,
-                        postCode,
-                        phoneNumber,
+                        testData.getTestData().getFirstName(),
+                        testData.getTestData().getLastName(),
+                        testData.getTestData().getCountryCode(),
+                        testData.getTestData().getAddress(),
+                        testData.getTestData().getCity(),
+                        testData.getTestData().getRegion(),
+                        testData.getTestData().getPostCode(),
+                        testData.getTestData().getPhoneNumber(),
                         paymentPage.generatedEmail())
-                .fillCartInformation(correctNumberCart, expirationDate, incompleteCvc)
+                .fillCartInformation(testData.getTestData().getCorrectNumberCart(), testData.getTestData().getExpirationDate(), testData.getTestData().getIncompleteCvc())
                 .checkboxAcceptanceOfRegulations(true)
                 .buyAndPay();
 
@@ -170,22 +147,22 @@ public class PaymentGatewayTest extends BaseTest {
 
     @Test
     public void successfulPaymentTest() {
-        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl()+categoryUrl);
+        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
-        CartPage cartPage = categoryPage.addToCart(productId).viewCart();
+        CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
         ReceivedOrderPage receivedOrderPage = paymentPage
                 .fillPaymentDetails(
-                        firstName,
-                        lastName,
-                        countryCode,
-                        address,
-                        city,
-                        region,
-                        postCode,
-                        phoneNumber,
+                        testData.getTestData().getFirstName(),
+                        testData.getTestData().getLastName(),
+                        testData.getTestData().getCountryCode(),
+                        testData.getTestData().getAddress(),
+                        testData.getTestData().getCity(),
+                        testData.getTestData().getRegion(),
+                        testData.getTestData().getPostCode(),
+                        testData.getTestData().getPhoneNumber(),
                         paymentPage.generatedEmail())
-                .fillCartInformation(correctNumberCart, expirationDate, cvc)
+                .fillCartInformation(testData.getTestData().getCorrectNumberCart(), testData.getTestData().getExpirationDate(), testData.getTestData().getCvc())
                 .checkboxAcceptanceOfRegulations(true)
                 .buyAndPay();
 
@@ -197,22 +174,22 @@ public class PaymentGatewayTest extends BaseTest {
 
     @Test
     public void cartDeclinedSecureTest() {
-        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl()+categoryUrl);
+        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
-        CartPage cartPage = categoryPage.addToCart(productId).viewCart();
+        CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
         ReceivedOrderPage receivedOrderPage = paymentPage
                 .fillPaymentDetails(
-                        firstName,
-                        lastName,
-                        countryCode,
-                        address,
-                        city,
-                        region,
-                        postCode,
-                        phoneNumber,
+                        testData.getTestData().getFirstName(),
+                        testData.getTestData().getLastName(),
+                        testData.getTestData().getCountryCode(),
+                        testData.getTestData().getAddress(),
+                        testData.getTestData().getCity(),
+                        testData.getTestData().getRegion(),
+                        testData.getTestData().getPostCode(),
+                        testData.getTestData().getPhoneNumber(),
                         paymentPage.generatedEmail())
-                .fillCartInformation(declinedNumberCart3DSecure, expirationDate, cvc)
+                .fillCartInformation(testData.getTestData().getDeclinedNumberCart3DSecure(), testData.getTestData().getExpirationDate(), testData.getTestData().getCvc())
                 .checkboxAcceptanceOfRegulations(true)
                 .buyAndPay();
 
@@ -228,22 +205,22 @@ public class PaymentGatewayTest extends BaseTest {
 
     @Test
     public void unsuccessfulPaymentBySecureTest() {
-        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl()+categoryUrl);
+        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
-        CartPage cartPage = categoryPage.addToCart(productId).viewCart();
+        CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
         ReceivedOrderPage receivedOrderPage = paymentPage
                 .fillPaymentDetails(
-                        firstName,
-                        lastName,
-                        countryCode,
-                        address,
-                        city,
-                        region,
-                        postCode,
-                        phoneNumber,
+                        testData.getTestData().getFirstName(),
+                        testData.getTestData().getLastName(),
+                        testData.getTestData().getCountryCode(),
+                        testData.getTestData().getAddress(),
+                        testData.getTestData().getCity(),
+                        testData.getTestData().getRegion(),
+                        testData.getTestData().getPostCode(),
+                        testData.getTestData().getPhoneNumber(),
                         paymentPage.generatedEmail())
-                .fillCartInformation(numberCart3DSecure, expirationDate, cvc)
+                .fillCartInformation(testData.getTestData().getNumberCart3DSecure(), testData.getTestData().getExpirationDate(), testData.getTestData().getCvc())
                 .checkboxAcceptanceOfRegulations(true)
                 .buyAndPay();
 
@@ -259,22 +236,22 @@ public class PaymentGatewayTest extends BaseTest {
 
     @Test
     public void successfulPaymentBySecureTest() {
-        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl()+categoryUrl);
+        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
-        CartPage cartPage = categoryPage.addToCart(productId).viewCart();
+        CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
         ReceivedOrderPage receivedOrderPage = paymentPage
                 .fillPaymentDetails(
-                        firstName,
-                        lastName,
-                        countryCode,
-                        address,
-                        city,
-                        region,
-                        postCode,
-                        phoneNumber,
+                        testData.getTestData().getFirstName(),
+                        testData.getTestData().getLastName(),
+                        testData.getTestData().getCountryCode(),
+                        testData.getTestData().getAddress(),
+                        testData.getTestData().getCity(),
+                        testData.getTestData().getRegion(),
+                        testData.getTestData().getPostCode(),
+                        testData.getTestData().getPhoneNumber(),
                         paymentPage.generatedEmail())
-                .fillCartInformation(numberCart3DSecure, expirationDate, cvc)
+                .fillCartInformation(testData.getTestData().getNumberCart3DSecure(), testData.getTestData().getExpirationDate(), testData.getTestData().getCvc())
                 .checkboxAcceptanceOfRegulations(true)
                 .buyAndPay();
 

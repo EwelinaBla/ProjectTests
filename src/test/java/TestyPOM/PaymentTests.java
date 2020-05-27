@@ -6,46 +6,25 @@ import org.junit.jupiter.api.Test;
 
 
 public class PaymentTests extends BaseTest {
-    //region VARIABLES
-    String categoryUrl = "/product-category/wspinaczka/";
-    String myAccountUrl = "/moje-konto/";
-    String productId = "40";
-    String phoneNumber = "123123123";
-    String numberCart = "4242424242424242";
-    String expirationDate = "12/22";
-    String cvc = "111";
-    String firstName = "Jan";
-    String lastName = "Kowalski";
-    String address = "Misia 77";
-    String city = "Warszawa";
-    String region = "Mazowieckie";
-    String postCode = "00-121";
-    String countryCode = "AD";
-    String password = "1XYE3WQsdk!";
-    String existentEmail = "test262729388@wp.pl";
-    String existentEmailPassword = "CSSXPATH123";
-    String wrongEmail = "11onet";
-    String wrongPhoneNumber = "aaabbbccc";
 
-    //endregion
     @Test
     public void buyWithoutAccountTest() {
-        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl()+categoryUrl);
+        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl()+ testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
-        CartPage cartPage = categoryPage.addToCart(productId).viewCart();
+        CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
         ReceivedOrderPage receivedOrderPage = paymentPage
                 .fillPaymentDetails(
-                        firstName,
-                        lastName,
-                        countryCode,
-                        address,
-                        city,
-                        region,
-                        postCode,
-                        phoneNumber,
+                        testData.getTestData().getFirstName(),
+                        testData.getTestData().getLastName(),
+                        testData.getTestData().getCountryCode(),
+                        testData.getTestData().getAddress(),
+                        testData.getTestData().getCity(),
+                        testData.getTestData().getRegion(),
+                        testData.getTestData().getPostCode(),
+                        testData.getTestData().getPhoneNumber(),
                         paymentPage.generatedEmail())
-                .fillCartInformation(numberCart, expirationDate, cvc)
+                .fillCartInformation(testData.getTestData().getNumberCart(), testData.getTestData().getExpirationDate(), testData.getTestData().getCvc())
                 .checkboxAcceptanceOfRegulations(true)
                 .buyAndPay();
 
@@ -57,23 +36,23 @@ public class PaymentTests extends BaseTest {
 
     @Test
     public void buyWithCreateAccountTest() {
-        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl()+categoryUrl);
+        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl()+testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
-        CartPage cartPage = categoryPage.addToCart(productId).viewCart();
+        CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
         ReceivedOrderPage receivedOrderPage = paymentPage
                 .fillPaymentDetails(
-                        firstName,
-                        lastName,
-                        countryCode,
-                        address,
-                        city,
-                        region,
-                        postCode,
-                        phoneNumber,
+                        testData.getTestData().getFirstName(),
+                        testData.getTestData().getLastName(),
+                        testData.getTestData().getCountryCode(),
+                        testData.getTestData().getAddress(),
+                        testData.getTestData().getCity(),
+                        testData.getTestData().getRegion(),
+                        testData.getTestData().getPostCode(),
+                        testData.getTestData().getPhoneNumber(),
                         paymentPage.generatedEmail())
-                .createAccount(password)
-                .fillCartInformation(numberCart, expirationDate, cvc)
+                .createAccount(testData.getTestData().getPassword())
+                .fillCartInformation(testData.getTestData().getNumberCart(), testData.getTestData().getExpirationDate(), testData.getTestData().getCvc())
                 .checkboxAcceptanceOfRegulations(true)
                 .buyAndPay();
 
@@ -81,7 +60,7 @@ public class PaymentTests extends BaseTest {
 
         AccountPage accountPage = new AccountPage(driver).header.goToMyAccount();
         String numberOrderInMyAccount = accountPage.getNumberOrderInMyAccount();
-        accountPage.goTo(configuration.getBaseUrl()+myAccountUrl).removeAccount();
+        accountPage.goTo(configuration.getBaseUrl()+testData.getTestData().getMyAccountUrl()).removeAccount();
 
         Assertions.assertEquals("#" + numberOrder, numberOrderInMyAccount,
                 "Order number is not what expected");
@@ -90,14 +69,14 @@ public class PaymentTests extends BaseTest {
 
     @Test
     public void buyWithExistingAccountTest() {
-        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl()+categoryUrl);
+        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl()+testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
-        CartPage cartPage = categoryPage.addToCart(productId).viewCart();
+        CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
 
         ReceivedOrderPage receivedOrderPage = paymentPage
-                .loginAsUser(existentEmail, existentEmailPassword)
-                .fillCartInformation(numberCart, expirationDate, cvc)
+                .loginAsUser(testData.getTestData().getExistentEmail(),testData.getTestData().getExistentEmailPassword())
+                .fillCartInformation(testData.getTestData().getNumberCart(), testData.getTestData().getExpirationDate(), testData.getTestData().getCvc())
                 .checkboxAcceptanceOfRegulations(true)
                 .buyAndPay();
 
@@ -112,13 +91,13 @@ public class PaymentTests extends BaseTest {
 
     @Test
     public void fieldValidationOnTheOrderFormTest() {
-        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl()+categoryUrl);
+        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl()+testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
-        CartPage cartPage = categoryPage.addToCart(productId).viewCart();
+        CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
 
         ReceivedOrderPage receivedOrderPage = paymentPage.selectCheckboxCreateAccount()
-                .fillCartInformation(numberCart, expirationDate, cvc)
+                .fillCartInformation(testData.getTestData().getNumberCart(), testData.getTestData().getExpirationDate(), testData.getTestData().getCvc())
                 .checkboxAcceptanceOfRegulations(false)
                 .buyAndPay();
 
@@ -130,9 +109,9 @@ public class PaymentTests extends BaseTest {
 
     @Test
     public void summaryOrderTest() {
-        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl()+categoryUrl);
+        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl()+testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
-        CartPage cartPage = categoryPage.addToCart(productId).viewCart();
+        CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
 
         String nameProduct = cartPage.getNameProduct();
         String priceProduct = cartPage.getPriceProduct();
@@ -140,16 +119,16 @@ public class PaymentTests extends BaseTest {
 
         PaymentPage paymentPage = cartPage.goToCash();
         paymentPage.fillPaymentDetails(
-                firstName,
-                lastName,
-                countryCode,
-                address,
-                city,
-                region,
-                postCode,
-                phoneNumber,
+                testData.getTestData().getFirstName(),
+                testData.getTestData().getLastName(),
+                testData.getTestData().getCountryCode(),
+                testData.getTestData().getAddress(),
+                testData.getTestData().getCity(),
+                testData.getTestData().getRegion(),
+                testData.getTestData().getPostCode(),
+                testData.getTestData().getPhoneNumber(),
                 paymentPage.generatedEmail())
-                .fillCartInformation(numberCart, expirationDate, cvc)
+                .fillCartInformation(testData.getTestData().getNumberCart(), testData.getTestData().getExpirationDate(), testData.getTestData().getCvc())
                 .checkboxAcceptanceOfRegulations(true);
 
         String paymentMethod = paymentPage.getPaymentMethodDetails();
@@ -182,22 +161,22 @@ public class PaymentTests extends BaseTest {
 
     @Test
     public void wrongEmailTest() {
-        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl()+categoryUrl);
+        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl()+testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
-        CartPage cartPage = categoryPage.addToCart(productId).viewCart();
+        CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
         ReceivedOrderPage receivedOrderPage = paymentPage
                 .fillPaymentDetails(
-                        firstName,
-                        lastName,
-                        countryCode,
-                        address,
-                        city,
-                        region,
-                        postCode,
-                        phoneNumber,
-                        wrongEmail)
-                .fillCartInformation(numberCart, expirationDate, cvc)
+                        testData.getTestData().getFirstName(),
+                        testData.getTestData().getLastName(),
+                        testData.getTestData().getCountryCode(),
+                        testData.getTestData().getAddress(),
+                        testData.getTestData().getCity(),
+                        testData.getTestData().getRegion(),
+                        testData.getTestData().getPostCode(),
+                        testData.getTestData().getPhoneNumber(),
+                        testData.getTestData().getWrongEmail())
+                .fillCartInformation(testData.getTestData().getNumberCart(), testData.getTestData().getExpirationDate(), testData.getTestData().getCvc())
                 .checkboxAcceptanceOfRegulations(true)
                 .buyAndPay();
 
@@ -210,22 +189,22 @@ public class PaymentTests extends BaseTest {
 
     @Test
     public void wrongPhoneNumberTest() {
-        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl()+categoryUrl);
+        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl()+testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
-        CartPage cartPage = categoryPage.addToCart(productId).viewCart();
+        CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
         ReceivedOrderPage receivedOrderPage = paymentPage
                 .fillPaymentDetails(
-                        firstName,
-                        lastName,
-                        countryCode,
-                        address,
-                        city,
-                        region,
-                        postCode,
-                        wrongPhoneNumber,
+                        testData.getTestData().getFirstName(),
+                        testData.getTestData().getLastName(),
+                        testData.getTestData().getCountryCode(),
+                        testData.getTestData().getAddress(),
+                        testData.getTestData().getCity(),
+                        testData.getTestData().getRegion(),
+                        testData.getTestData().getPostCode(),
+                        testData.getTestData().getWrongPhoneNumber(),
                         paymentPage.generatedEmail())
-                .fillCartInformation(numberCart, expirationDate, cvc)
+                .fillCartInformation(testData.getTestData().getNumberCart(), testData.getTestData().getExpirationDate(), testData.getTestData().getCvc())
                 .checkboxAcceptanceOfRegulations(true)
                 .buyAndPay();
 
