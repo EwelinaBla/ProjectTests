@@ -1,7 +1,5 @@
 package TestyPOM;
 
-import Drivers.Browser;
-import Drivers.WebDriverFactory;
 import Helpers.StatusTest;
 import Utils.ConfigurationReader;
 import Utils.TestDataReader;
@@ -25,7 +23,7 @@ public class BaseTest {
     protected WebDriver driver;
     protected ConfigurationReader configuration;
     protected TestDataReader testData;
-    private String screenshotLocation = "C:\\Projects\\ProjectTests\\src\\main\\resources\\ScreenShot\\";
+
     private final String configurationLocation = "src/Configs/Configurations.properties";
     private final String testDataLocation = "src/test/java/TestData.properties";
 
@@ -43,9 +41,10 @@ public class BaseTest {
 //        local tests
         WebDriverManager.chromedriver().setup();
         this.driver = new ChromeDriver();
+
 //          Grid
 //        WebDriverFactory driverFactory=new WebDriverFactory();
-//        driver=driverFactory.create(Browser.valueOf(configuration.getBrowser()), configuration.getHubUrl());
+//        driver=driverFactory.create(BrowserType.valueOf(configuration.getBrowser()), configuration.getHubUrl());
 
         driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
         driver.manage().window().maximize();
@@ -54,15 +53,15 @@ public class BaseTest {
     @AfterEach
     public void quit(TestInfo info) throws IOException {
         if (statusTest.isField) {
-            System.out.println(" The screenshot is available in: " + screenshot(info));
+            System.out.println(" The screenshot is available in: " + makeScreenshot(info));
         }
         driver.quit();
     }
 
-    private String screenshot(TestInfo info) throws IOException {
+    private String makeScreenshot(TestInfo info) throws IOException {
         File screen = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH-mm-ss");
-        String path = screenshotLocation + info.getDisplayName() + formatter.format(LocalDateTime.now()) + ".jpg";
+        String path = configuration.getPathScreenshot() + info.getDisplayName() + formatter.format(LocalDateTime.now()) + ".jpg";
         FileUtils.copyFile(screen, new File(path));
         return path;
     }

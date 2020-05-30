@@ -15,16 +15,17 @@ public class CartPage extends BasePage {
         wait = new WebDriverWait(driver, 7);
     }
 
-    private By shopTablePath = By.xpath(".//form//*[contains(@class,'shop_table')]");
-    private By productQuantityFieldPath = By.xpath(".//div[@class='quantity']//input");
-    private By removeProductButtonPath = By.xpath(".//*[contains(@class,'cart_item')]");
-    private By quantityPath = By.xpath(".//input[contains(@class,'qty')]");
-    private By buttonUpdatePath = By.xpath(".//*[@id='post-6']/div/div/form/table/tbody/tr[2]/td/button");
-    private By buttonGoToCashPath = By.xpath(".//a[contains(@class,'checkout-button')]");
-    private By nameProductInCartPath = By.xpath(".//*[@class='product-name']/a");
-    private By priceProductInCartPath = By.xpath(".//*[@class='product-price']//*[contains(@class, 'Price-amount')]");
-    private By quantityInCartPath = By.xpath(".//div[@class='quantity']//input");
-    private By communiquePath=By.xpath(".//div[@class='woocommerce-message' and @role='alert']");
+    private By shopTablePath                    = By.xpath(".//form//*[contains(@class,'shop_table')]");
+    private By productQuantityFieldPath         = By.xpath(".//div[@class='quantity']//input");
+    private By removeProductButtonPath          = By.xpath(".//*[contains(@class,'cart_item')]");
+    private By quantityPath                     = By.xpath(".//input[contains(@class,'qty')]");
+    private By buttonUpdatePath                 = By.xpath(".//*[@id='post-6']/div/div/form/table/tbody/tr[2]/td/button");
+    private By buttonGoToCashPath               = By.xpath(".//a[contains(@class,'checkout-button')]");
+    private By nameProductInCartPath            = By.xpath(".//*[@class='product-name']/a");
+    private By priceProductInCartPath           = By.xpath(".//*[@class='product-price']//*[contains(@class, 'Price-amount')]");
+    private By quantityInCartPath               = By.xpath(".//div[@class='quantity']//input");
+    private By communiquePath                   = By.xpath(".//div[@class='woocommerce-message' and @role='alert']");
+
     private String removeProductButtonLocator = ".//a[@data-product_id='<productId>']";
 
     public int getProductQuantity() {
@@ -54,30 +55,30 @@ public class CartPage extends BasePage {
         return this;
     }
 
-    public Boolean noExistsProductInCart(String productId) {
+    public Boolean isNoExistsProductInCart(String productId) {
         wait.until(ExpectedConditions.presenceOfElementLocated(communiquePath));
-        boolean present;
+        boolean isPresent;
         try {
             By removeProductButtonPath = By.xpath(removeProductButtonLocator.replace("<productId>", productId));
             driver.findElement(removeProductButtonPath);
-            present = false;
+            isPresent = false;
         } catch (NoSuchElementException e) {
-            present = true;
+            isPresent = true;
         }
-        return present;
+        return isPresent;
     }
 
     public boolean isProductInCart(String productId) {
         waitForShopTable();
         By removeProductButtonPath = By.xpath(removeProductButtonLocator.replace("<productId>", productId));
         int productRecords = driver.findElements(removeProductButtonPath).size();
-        boolean presenceOfProduct = false;
+        boolean isPresenceOfProduct = false;
         if (productRecords == 1) {
-            presenceOfProduct = true;
+            isPresenceOfProduct = true;
         } else if (productRecords > 1) {
             throw new IllegalArgumentException("Number of records is greater than 1");
         }
-        return presenceOfProduct;
+        return isPresenceOfProduct;
     }
 
     public PaymentPage goToCash() {

@@ -40,50 +40,50 @@ public class TestData {
 
     public TestData(Properties properties) {
         //region URL
-        productUrl = properties.getProperty("productUrl");
-        categoryUrl = properties.getProperty("categoryUrl");
-        firstCategoryUrl = properties.getProperty("firstCategoryUrl");
-        secondCategoryUrl = properties.getProperty("secondCategoryUrl");
-        thirdCategoryUrl = properties.getProperty("thirdCategoryUrl");
-        myAccountUrl = properties.getProperty("myAccountUrl");
+        productUrl                  = properties.getProperty("productUrl");
+        categoryUrl                 = properties.getProperty("categoryUrl");
+        firstCategoryUrl            = properties.getProperty("firstCategoryUrl");
+        secondCategoryUrl           = properties.getProperty("secondCategoryUrl");
+        thirdCategoryUrl            = properties.getProperty("thirdCategoryUrl");
+        myAccountUrl                = properties.getProperty("myAccountUrl");
 
         //region PRODUCT
-        productId = properties.getProperty("productId");
-        quantity = Integer.parseInt(properties.getProperty("quantity"));
+        productId                   = properties.getProperty("productId");
+        quantity                    = Integer.parseInt(properties.getProperty("quantity"));
 
         //region CART
-        numberCart = properties.getProperty("numberCart");
-        correctNumberCart = properties.getProperty("correctNumberCart");
-        declinedNumberCart3DSecure = properties.getProperty("declinedNumberCart3DSecure");
-        incorrectNumberCart = properties.getProperty("incorrectNumberCart");
-        numberCart3DSecure = properties.getProperty("numberCart3DSecure");
-        incompleteNumberCart = properties.getProperty("incompleteNumberCart");
+        numberCart                  = properties.getProperty("numberCart");
+        correctNumberCart           = properties.getProperty("correctNumberCart");
+        declinedNumberCart3DSecure  = properties.getProperty("declinedNumberCart3DSecure");
+        incorrectNumberCart         = properties.getProperty("incorrectNumberCart");
+        numberCart3DSecure          = properties.getProperty("numberCart3DSecure");
+        incompleteNumberCart        = properties.getProperty("incompleteNumberCart");
 
-        expirationDate = properties.getProperty("expirationDate");
-        wrongExpirationDate = properties.getProperty("wrongExpirationDate");
-        incompleteExpirationDate = properties.getProperty("incompleteExpirationDate");
+        expirationDate              = properties.getProperty("expirationDate");
+        wrongExpirationDate         = properties.getProperty("wrongExpirationDate");
+        incompleteExpirationDate    = properties.getProperty("incompleteExpirationDate");
 
-        incompleteCvc = properties.getProperty("incompleteCvc");
-        cvc = properties.getProperty("cvc");
+        incompleteCvc               = properties.getProperty("incompleteCvc");
+        cvc                         = properties.getProperty("cvc");
 
         //region CUSTOMER
-        firstName = properties.getProperty("firstName");
-        lastName = properties.getProperty("lastName");
+        firstName                   = properties.getProperty("firstName");
+        lastName                    = properties.getProperty("lastName");
 
         //region ADDRESS
-        address = properties.getProperty("address");
-        city = properties.getProperty("city");
-        region = properties.getProperty("region");
-        postCode = properties.getProperty("postCode");
-        countryCode = properties.getProperty("countryCode");
-        phoneNumber = properties.getProperty("phoneNumber");
+        address                     = properties.getProperty("address");
+        city                        = properties.getProperty("city");
+        region                      = properties.getProperty("region");
+        postCode                    = properties.getProperty("postCode");
+        countryCode                 = properties.getProperty("countryCode");
+        phoneNumber                 = properties.getProperty("phoneNumber");
 
         //region CONTACT
-        password = properties.getProperty("password");
-        existentEmail = properties.getProperty("existentEmail");
-        existentEmailPassword = properties.getProperty("existentEmailPassword");
-        wrongEmail = properties.getProperty("wrongEmail");
-        wrongPhoneNumber = properties.getProperty("wrongPhoneNumber");
+        password                    = properties.getProperty("password");
+        existentEmail               = properties.getProperty("existentEmail");
+        existentEmailPassword       = properties.getProperty("existentEmailPassword");
+        wrongEmail                  = properties.getProperty("wrongEmail");
+        wrongPhoneNumber            = properties.getProperty("wrongPhoneNumber");
     }
     public Integer getQuantity() {
         return quantity;

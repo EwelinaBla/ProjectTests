@@ -13,10 +13,10 @@ public class PaymentGatewayPage extends BasePage {
         super(driver);
     }
 
-    private By firstSecureFramePath = By.xpath("/html/body/div[1]/iframe");
-    private By secondSecureFramePath = By.xpath(".//*[@id='challengeFrame']");
-    private By transactionCompletePath = By.xpath(".//*[@id='test-source-authorize-3ds']");
-    private By transactionFailPath = By.xpath(".//*[@id='test-source-fail-3ds']");
+    private By firstSecureFramePath         = By.xpath("/html/body/div[1]/iframe");
+    private By secondSecureFramePath        = By.xpath(".//*[@id='challengeFrame']");
+    private By transactionCompletePath      = By.xpath(".//*[@id='test-source-authorize-3ds']");
+    private By transactionFailPath          = By.xpath(".//*[@id='test-source-fail-3ds']");
 
     public PaymentGatewayPage goToSecure() {
         wait = new WebDriverWait(driver, 7);

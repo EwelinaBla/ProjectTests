@@ -13,13 +13,13 @@ public class ProductPage extends BasePage {
 
     public ProductPage(WebDriver driver) {
         super(driver);
-        footerAlertPage =new FooterAlertPage(driver);
+        footerAlertPage = new FooterAlertPage(driver);
         wait = new WebDriverWait(driver, 7);
     }
 
-    private By buttonAddToCartButtonPath = By.xpath(".//button[@name='add-to-cart']");
-    private By buttonViewCartPath = By.xpath(".//div[@class='woocommerce-message']//a[contains(@class, 'button')]");
-    private By productQuantityPath = By.xpath(".//form/div[1]/input");
+    private By buttonAddToCartButtonPath             = By.xpath(".//button[@name='add-to-cart']");
+    private By buttonViewCartPath                    = By.xpath(".//div[@class='woocommerce-message']//a[contains(@class, 'button')]");
+    private By productQuantityPath                   = By.xpath(".//form/div[1]/input");
 
     public ProductPage goTo(String productUrl) {
         driver.navigate().to(productUrl);

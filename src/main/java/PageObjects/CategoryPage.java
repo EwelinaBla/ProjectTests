@@ -16,12 +16,13 @@ public class CategoryPage extends BasePage {
 
     public CategoryPage(WebDriver driver) {
         super(driver);
-        header=new HeaderPage(driver);
-        footerAlertPage =new FooterAlertPage(driver);
+        header = new HeaderPage(driver);
+        footerAlertPage = new FooterAlertPage(driver);
     }
 
-    private By buttonsAddToCartPath = By.xpath(".//*[contains(@class,'add_to_cart_button')]");
-    private By viewCartButtonPath = By.xpath(".//*[contains(@class,'added_to_cart')]");
+    private By buttonsAddToCartPath          = By.xpath(".//*[contains(@class,'add_to_cart_button')]");
+    private By viewCartButtonPath            = By.xpath(".//*[contains(@class,'added_to_cart')]");
+
     private String buttonAddToCartLocator = ".//*[contains(@class,'add_to_cart_button') and @data-product_id='<productId>']";
 
     public CategoryPage goTo(String categoryUrl) {

@@ -18,30 +18,30 @@ public class PaymentPage extends BasePage {
     }
 
     //region PATH
-    private By firstNamePath = By.xpath(".//*[@id='billing_first_name']");
-    private By lastNamePath = By.xpath(".//*[@id='billing_last_name']");
-    private By countryContainerPath = By.xpath(".//*[@id='select2-billing_country-container']");
-    private By addressPath = By.xpath(".//*[@id='billing_address_1']");
-    private By cityPath = By.xpath(".//*[@id='billing_city']");
-    private By regionPath = By.xpath(".//*[@id='billing_state']");
-    private By postCodePath = By.xpath(".//*[@id='billing_postcode']");
-    private By phonePath = By.xpath(".//*[@id='billing_phone']");
-    private By emailPath = By.xpath(".//*[@id='billing_email']");
-    private By frameNumberCartPath = By.xpath(".//iframe[@name='__privateStripeFrame8']");
-    private By numberCartPath = By.xpath(".//*[@name='cardnumber']");
-    private By frameExpirationDataPath = By.xpath(".//iframe[@name='__privateStripeFrame9']");
-    private By expirationDatePath = By.xpath(".//span/input[@name='exp-date']");
-    private By frameCvcPath = By.xpath(".//iframe[@name='__privateStripeFrame10']");
-    private By cvcPath = By.xpath(".//span/input[@name='cvc']");
-    private By checkboxAcceptRegulationsPath = By.xpath(".//*[@id='terms']");
-    private By buttonBuyAndPayPath = By.xpath(".//button[@id='place_order']");
-    private By checkboxCreateAccountPath = By.xpath(".//*[@id='createaccount']");
-    private By passwordNewUserPath = By.xpath(".//*[@id='account_password']");
-    private By showLoginPath = By.xpath(".//div[@class='woocommerce-info']//a[1]");
-    private By usernamePath = By.xpath(".//*[@id='username']");
-    private By passwordPath = By.xpath("//*[@id='password']");
-    private By buttonLoginPath = By.xpath(".//button[@name='login']");
-    private By paymentMethodPath = By.xpath("//*[contains(@class,'payment_method_stripe')]/label");
+    private By firstNamePath                    = By.xpath(".//*[@id='billing_first_name']");
+    private By lastNamePath                     = By.xpath(".//*[@id='billing_last_name']");
+    private By countryContainerPath             = By.xpath(".//*[@id='select2-billing_country-container']");
+    private By addressPath                      = By.xpath(".//*[@id='billing_address_1']");
+    private By cityPath                         = By.xpath(".//*[@id='billing_city']");
+    private By regionPath                       = By.xpath(".//*[@id='billing_state']");
+    private By postCodePath                     = By.xpath(".//*[@id='billing_postcode']");
+    private By phonePath                        = By.xpath(".//*[@id='billing_phone']");
+    private By emailPath                        = By.xpath(".//*[@id='billing_email']");
+    private By frameNumberCartPath              = By.xpath(".//iframe[@name='__privateStripeFrame8']");
+    private By numberCartPath                   = By.xpath(".//*[@name='cardnumber']");
+    private By frameExpirationDataPath          = By.xpath(".//iframe[@name='__privateStripeFrame9']");
+    private By expirationDatePath               = By.xpath(".//span/input[@name='exp-date']");
+    private By frameCvcPath                     = By.xpath(".//iframe[@name='__privateStripeFrame10']");
+    private By cvcPath                          = By.xpath(".//span/input[@name='cvc']");
+    private By checkboxAcceptRegulationsPath    = By.xpath(".//*[@id='terms']");
+    private By buttonBuyAndPayPath              = By.xpath(".//button[@id='place_order']");
+    private By checkboxCreateAccountPath        = By.xpath(".//*[@id='createaccount']");
+    private By passwordNewUserPath              = By.xpath(".//*[@id='account_password']");
+    private By showLoginPath                    = By.xpath(".//div[@class='woocommerce-info']//a[1]");
+    private By usernamePath                     = By.xpath(".//*[@id='username']");
+    private By passwordPath                     = By.xpath("//*[@id='password']");
+    private By buttonLoginPath                  = By.xpath(".//button[@name='login']");
+    private By paymentMethodPath                = By.xpath("//*[contains(@class,'payment_method_stripe')]/label");
     //endregion
     private String countryLocator = ".//*[contains(@id,'<countryCode>')]";
 

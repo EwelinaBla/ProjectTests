@@ -11,8 +11,8 @@ public class HeaderPage extends BasePage{
         super(driver);
         wait=new WebDriverWait(driver,5);
     }
-    private By cartPath = By.xpath("//*[@id='menu-item-200']/a");
-    private By myAccountPath = By.xpath(".//*[@id='menu-item-201']/a");
+    private By cartPath             = By.xpath("//*[@id='menu-item-200']/a");
+    private By myAccountPath        = By.xpath(".//*[@id='menu-item-201']/a");
 
     public CartPage goToCart() {
         driver.findElement(cartPath).click();

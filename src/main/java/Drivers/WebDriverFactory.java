@@ -14,7 +14,7 @@ public class WebDriverFactory {
 
     private RemoteWebDriver driver;
 
-    public WebDriver create(Browser browserType, String hubUrl) {
+    public WebDriver create(BrowserType browserType, String hubUrl) {
         switch (browserType) {
             case CHROME:
                 return getChromeDriver(hubUrl);

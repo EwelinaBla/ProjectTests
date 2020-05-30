@@ -15,9 +15,9 @@ public class AccountPage extends BasePage {
         header = new HeaderPage(driver);
     }
 
-    private By myOrderPath = By.xpath(".//*[@class='entry-content']//li[2]/a");
-    private By numberOrderPath = By.xpath(".//table/tbody/tr[1]/td[1]/a");
-    private By deleteAccountPath = By.xpath(".//div[@class='woocommerce-MyAccount-content']//p[3]/a");
+    private By myOrderPath              = By.xpath(".//*[@class='entry-content']//li[2]/a");
+    private By numberOrderPath          = By.xpath(".//table/tbody/tr[1]/td[1]/a");
+    private By deleteAccountPath        = By.xpath(".//div[@class='woocommerce-MyAccount-content']//p[3]/a");
 
 
     public String getNumberOrderInMyAccount() {
