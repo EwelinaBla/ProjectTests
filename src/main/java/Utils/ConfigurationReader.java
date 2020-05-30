@@ -10,7 +10,7 @@ public class ConfigurationReader extends FileReader {
 
     public ConfigurationReader(String configurationLocation) {
         super(configurationLocation);
-        this.configurationLocation = configurationLocation;
+        this.configurationLocation =getConfigurationLocation();
     }
 
     void loadData() {

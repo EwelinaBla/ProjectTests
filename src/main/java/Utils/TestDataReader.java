@@ -7,7 +7,7 @@ public class TestDataReader extends FileReader {
 
     public TestDataReader(String testDataLocation) {
         super(testDataLocation);
-        this.testDataLocation=testDataLocation;
+        this.testDataLocation=getTestDataLocation();
     }
 
     void loadData() {
