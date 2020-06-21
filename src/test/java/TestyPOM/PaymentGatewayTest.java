@@ -168,7 +168,7 @@ public class PaymentGatewayTest extends BaseTest {
 
         String numberOrder = receivedOrderPage.getNumberOrder();
 
-        Assertions.assertTrue(numberOrder != null,
+        Assertions.assertNotNull (numberOrder,
                 "Number order is null");
     }
 
@@ -260,7 +260,7 @@ public class PaymentGatewayTest extends BaseTest {
 
         String numberOrder = receivedOrderPage.getNumberOrder();
 
-        Assertions.assertTrue(numberOrder != null,
+        Assertions.assertNotNull (numberOrder,
                 "Number order is null");
     }
 }

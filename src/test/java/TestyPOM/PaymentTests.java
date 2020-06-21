@@ -30,7 +30,7 @@ public class PaymentTests extends BaseTest {
 
         String numberOrder = receivedOrderPage.getNumberOrder();
 
-        Assertions.assertTrue(numberOrder != null,
+        Assertions.assertNotNull (numberOrder,
                 "Number order is null");
     }
 
@@ -144,8 +144,9 @@ public class PaymentTests extends BaseTest {
         String paymentMethodInSummary = receivedOrderPage.getPaymentMethod();
 
         Assertions.assertAll(
-                () -> Assertions.assertTrue(numberOrderInSummary != null,
-                        "Order number is null"),
+                () ->
+                        Assertions.assertNotNull (numberOrderInSummary,
+                                "Number order is null"),
                 () -> Assertions.assertEquals(currentDate, dataOfOrderInSummary,
                         "Date on the summary is not correct"),
                 () -> Assertions.assertEquals(nameProduct, productNameInSummary,
