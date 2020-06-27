@@ -22,8 +22,7 @@ public class AccountPage extends BasePage {
 
     public String getNumberOrderInMyAccount() {
         wait.until(ExpectedConditions.elementToBeClickable(myOrderPath)).click();
-        String numberOrderInMyAccount = driver.findElement(numberOrderPath).getText();
-        return numberOrderInMyAccount;
+        return driver.findElement(numberOrderPath).getText();
     }
 
     public AccountPage goTo(String myAccountUrl){

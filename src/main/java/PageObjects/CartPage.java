@@ -56,53 +56,48 @@ public class CartPage extends BasePage {
     }
 
     public Boolean isNoExistsProductInCart(String productId) {
-        wait.until(ExpectedConditions.presenceOfElementLocated(communiquePath));
-        boolean isPresent;
+        wait.until (ExpectedConditions.presenceOfElementLocated (communiquePath));
         try {
-            By removeProductButtonPath = By.xpath(removeProductButtonLocator.replace("<productId>", productId));
-            driver.findElement(removeProductButtonPath);
-            isPresent = false;
+            By removeProductButtonPath = By.xpath (removeProductButtonLocator.replace ("<productId>", productId));
+            driver.findElement (removeProductButtonPath);
         } catch (NoSuchElementException e) {
-            isPresent = true;
+            return true;
         }
-        return isPresent;
+        return false;
     }
 
     public boolean isProductInCart(String productId) {
-        waitForShopTable();
-        By removeProductButtonPath = By.xpath(removeProductButtonLocator.replace("<productId>", productId));
-        int productRecords = driver.findElements(removeProductButtonPath).size();
-        boolean isPresenceOfProduct = false;
+        waitForShopTable ();
+        By removeProductButtonPath = By.xpath (removeProductButtonLocator.replace ("<productId>", productId));
+        int productRecords = driver.findElements (removeProductButtonPath).size ();
+
         if (productRecords == 1) {
-            isPresenceOfProduct = true;
+            return true;
         } else if (productRecords > 1) {
-            throw new IllegalArgumentException("Number of records is greater than 1");
+            throw new IllegalArgumentException ("Number of records is greater than 1");
         }
-        return isPresenceOfProduct;
+        return false;
     }
 
     public PaymentPage goToCash() {
-        driver.findElement(buttonGoToCashPath).click();
-        return new PaymentPage(driver);
+        driver.findElement (buttonGoToCashPath).click ();
+        return new PaymentPage (driver);
     }
 
     public void waitForShopTable() {
-        wait.until(ExpectedConditions.presenceOfElementLocated(shopTablePath));
+        wait.until (ExpectedConditions.presenceOfElementLocated (shopTablePath));
     }
 
     public String getNameProduct() {
-        String nameProduct = driver.findElement(nameProductInCartPath).getText();
-        return nameProduct;
+        return driver.findElement (nameProductInCartPath).getText ();
     }
 
     public String getPriceProduct() {
-        String priceProduct = driver.findElement(priceProductInCartPath).getText();
-        return priceProduct;
+        return driver.findElement (priceProductInCartPath).getText ();
     }
 
     public String getQuantityInCart() {
-        String quantityInCart = driver.findElement(quantityInCartPath).getAttribute("value");
-        return quantityInCart;
+        return driver.findElement (quantityInCartPath).getAttribute ("value");
     }
 }
 
