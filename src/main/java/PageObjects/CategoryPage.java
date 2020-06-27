@@ -52,5 +52,4 @@ public class CategoryPage extends BasePage {
         }
         return this;
     }
-
 }

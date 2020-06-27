@@ -93,14 +93,11 @@ public class PaymentPage extends BasePage {
     }
 
     public String getPaymentMethodDetails() {
-        String paymentMethod = driver.findElement(paymentMethodPath).getText();
-        return paymentMethod;
+        return driver.findElement(paymentMethodPath).getText();
     }
 
     public String generatedEmail() {
-        Random r = new Random();
-        int number = r.nextInt();
-        return "test" + number + "@wp.pl";
+        return "test" + new Random().nextInt () + "@wp.pl";
     }
 
     private void switchToDefaultContentAndFrame(By framePath) {

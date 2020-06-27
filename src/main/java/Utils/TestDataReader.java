@@ -6,19 +6,19 @@ public class TestDataReader extends FileReader {
     private TestData testData;
 
     public TestDataReader(String testDataLocation) {
-        super(testDataLocation);
-        this.testDataLocation=getTestDataLocation();
+        super (testDataLocation);
+        this.testDataLocation = getTestDataLocation ();
     }
 
     void loadData() {
-        testData=new TestData(properties);
+        testData = new TestData (properties);
     }
 
     public String getTestDataLocation() {
         return testDataLocation;
     }
+
     public TestData getTestData() {
         return testData;
     }
-
 }

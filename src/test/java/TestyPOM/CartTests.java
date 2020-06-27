@@ -65,7 +65,10 @@ public class CartTests extends BaseTest {
     public void removeProductFromCartTest() {
         ProductPage productPage = new ProductPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getProductUrl());
         productPage.footerAlertPage.close();
-        Boolean cartIsEmpty = productPage.addToCart().viewCart().removeProduct(testData.getTestData().getProductId()).isNoExistsProductInCart(testData.getTestData().getProductId());
+        Boolean cartIsEmpty = productPage.addToCart()
+                .viewCart()
+                .removeProduct(testData.getTestData().getProductId())
+                .isNoExistsProductInCart(testData.getTestData().getProductId());
 
         Assertions.assertTrue(cartIsEmpty,
                 "Product id=" + testData.getTestData().getProductId() + " is in the cart");

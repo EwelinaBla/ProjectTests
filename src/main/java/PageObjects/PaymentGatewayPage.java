@@ -27,11 +27,7 @@ public class PaymentGatewayPage extends BasePage {
     }
 
     public void paymentBySecure(Boolean isComplete) {
-        if (isComplete) {
-            wait.until(ExpectedConditions.elementToBeClickable(transactionCompletePath)).submit();
-        } else {
-            wait.until(ExpectedConditions.elementToBeClickable(transactionFailPath)).submit();
-        }
+        wait.until(ExpectedConditions.elementToBeClickable(isComplete ? transactionCompletePath : transactionFailPath)).submit();
         driver.switchTo().defaultContent();
     }
 
