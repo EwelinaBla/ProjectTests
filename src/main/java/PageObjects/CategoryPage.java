@@ -25,11 +25,6 @@ public class CategoryPage extends BasePage {
 
     private String buttonAddToCartLocator = ".//*[contains(@class,'add_to_cart_button') and @data-product_id='<productId>']";
 
-    public CategoryPage goTo(String categoryUrl) {
-        driver.navigate().to(categoryUrl);
-        return this;
-    }
-
     public CategoryPage addToCart(String productId) {
         By buttonAddToCartPath = By.xpath(buttonAddToCartLocator.replace("<productId>", productId));
         driver.findElement(buttonAddToCartPath).click();
@@ -37,9 +32,7 @@ public class CategoryPage extends BasePage {
     }
 
     public CartPage viewCart() {
-        wait = new WebDriverWait(driver, 15);
-        wait.until(ExpectedConditions.presenceOfElementLocated(viewCartButtonPath)).click();
-//        wait.until(ExpectedConditions.elementToBeClickable(viewCartButtonPath)).click();
+        click (driver, 15, ExpectedConditions.presenceOfElementLocated (viewCartButtonPath), viewCartButtonPath);
         return new CartPage(driver);
     }
 

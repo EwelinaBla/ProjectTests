@@ -21,14 +21,10 @@ public class AccountPage extends BasePage {
 
 
     public String getNumberOrderInMyAccount() {
-        wait.until(ExpectedConditions.elementToBeClickable(myOrderPath)).click();
+        click (driver, 5, ExpectedConditions.elementToBeClickable (myOrderPath), myOrderPath);
         return driver.findElement(numberOrderPath).getText();
     }
 
-    public AccountPage goTo(String myAccountUrl){
-        driver.navigate().to(myAccountUrl);
-        return this;
-    }
     public AccountPage removeAccount() {
         driver.findElement(deleteAccountPath).click();
         wait.until(ExpectedConditions.alertIsPresent());

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 public class PaymentGatewayTest extends BaseTest {
     @Test
     public void incorrectNumberCartTest() {
-        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getCategoryUrl());
+        CategoryPage categoryPage = (CategoryPage) new CategoryPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
         CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
@@ -35,7 +35,7 @@ public class PaymentGatewayTest extends BaseTest {
 
     @Test
     public void incompleteNumberCartTest() {
-        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getCategoryUrl());
+        CategoryPage categoryPage = (CategoryPage) new CategoryPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
         CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
@@ -63,7 +63,7 @@ public class PaymentGatewayTest extends BaseTest {
 
     @Test
     public void incorrectExpirationDateTest() {
-        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getCategoryUrl());
+        CategoryPage categoryPage = (CategoryPage) new CategoryPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
         CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
@@ -91,7 +91,7 @@ public class PaymentGatewayTest extends BaseTest {
 
     @Test
     public void incompleteExpirationDateTest() {
-        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getCategoryUrl());
+        CategoryPage categoryPage = (CategoryPage) new CategoryPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
         CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
@@ -119,7 +119,7 @@ public class PaymentGatewayTest extends BaseTest {
 
     @Test
     public void incompleteCvcTest() {
-        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getCategoryUrl());
+        CategoryPage categoryPage = (CategoryPage) new CategoryPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
         CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
@@ -147,7 +147,7 @@ public class PaymentGatewayTest extends BaseTest {
 
     @Test
     public void successfulPaymentTest() {
-        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getCategoryUrl());
+        CategoryPage categoryPage = (CategoryPage) new CategoryPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
         CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
@@ -174,7 +174,7 @@ public class PaymentGatewayTest extends BaseTest {
 
     @Test
     public void cartDeclinedSecureTest() {
-        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getCategoryUrl());
+        CategoryPage categoryPage = (CategoryPage) new CategoryPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
         CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
@@ -205,7 +205,7 @@ public class PaymentGatewayTest extends BaseTest {
 
     @Test
     public void unsuccessfulPaymentBySecureTest() {
-        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getCategoryUrl());
+        CategoryPage categoryPage = (CategoryPage) new CategoryPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
         CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
@@ -236,7 +236,7 @@ public class PaymentGatewayTest extends BaseTest {
 
     @Test
     public void successfulPaymentBySecureTest() {
-        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getCategoryUrl());
+        CategoryPage categoryPage = (CategoryPage) new CategoryPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
         CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();

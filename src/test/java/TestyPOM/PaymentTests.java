@@ -9,7 +9,7 @@ public class PaymentTests extends BaseTest {
 
     @Test
     public void buyWithoutAccountTest() {
-        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl()+ testData.getTestData().getCategoryUrl());
+        CategoryPage categoryPage = (CategoryPage) new CategoryPage(driver).goTo(configuration.getBaseUrl()+ testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
         CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
@@ -36,7 +36,7 @@ public class PaymentTests extends BaseTest {
 
     @Test
     public void buyWithCreateAccountTest() {
-        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl()+testData.getTestData().getCategoryUrl());
+        CategoryPage categoryPage = (CategoryPage) new CategoryPage(driver).goTo(configuration.getBaseUrl()+testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
         CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
@@ -60,7 +60,8 @@ public class PaymentTests extends BaseTest {
 
         AccountPage accountPage = new AccountPage(driver).header.goToMyAccount();
         String numberOrderInMyAccount = accountPage.getNumberOrderInMyAccount();
-        accountPage.goTo(configuration.getBaseUrl()+testData.getTestData().getMyAccountUrl()).removeAccount();
+        accountPage.goTo(configuration.getBaseUrl()+testData.getTestData().getMyAccountUrl());
+        accountPage.removeAccount ();
 
         Assertions.assertEquals("#" + numberOrder, numberOrderInMyAccount,
                 "Order number is not what expected");
@@ -69,7 +70,7 @@ public class PaymentTests extends BaseTest {
 
     @Test
     public void buyWithExistingAccountTest() {
-        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl()+testData.getTestData().getCategoryUrl());
+        CategoryPage categoryPage = (CategoryPage) new CategoryPage(driver).goTo(configuration.getBaseUrl()+testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
         CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
@@ -91,7 +92,7 @@ public class PaymentTests extends BaseTest {
 
     @Test
     public void fieldValidationOnTheOrderFormTest() {
-        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl()+testData.getTestData().getCategoryUrl());
+        CategoryPage categoryPage = (CategoryPage) new CategoryPage(driver).goTo(configuration.getBaseUrl()+testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
         CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
@@ -109,7 +110,7 @@ public class PaymentTests extends BaseTest {
 
     @Test
     public void summaryOrderTest() {
-        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl()+testData.getTestData().getCategoryUrl());
+        CategoryPage categoryPage = (CategoryPage) new CategoryPage(driver).goTo(configuration.getBaseUrl()+testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
         CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
 
@@ -162,7 +163,7 @@ public class PaymentTests extends BaseTest {
 
     @Test
     public void wrongEmailTest() {
-        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl()+testData.getTestData().getCategoryUrl());
+        CategoryPage categoryPage = (CategoryPage) new CategoryPage(driver).goTo(configuration.getBaseUrl()+testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
         CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
@@ -190,7 +191,7 @@ public class PaymentTests extends BaseTest {
 
     @Test
     public void wrongPhoneNumberTest() {
-        CategoryPage categoryPage = new CategoryPage(driver).goTo(configuration.getBaseUrl()+testData.getTestData().getCategoryUrl());
+        CategoryPage categoryPage = (CategoryPage) new CategoryPage(driver).goTo(configuration.getBaseUrl()+testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
         CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();

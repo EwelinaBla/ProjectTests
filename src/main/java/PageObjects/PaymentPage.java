@@ -14,7 +14,7 @@ public class PaymentPage extends BasePage {
 
     public PaymentPage(WebDriver driver) {
         super(driver);
-        wait = new WebDriverWait(driver, 5);
+        wait = new WebDriverWait(driver, 10);
     }
 
     //region PATH
@@ -27,11 +27,11 @@ public class PaymentPage extends BasePage {
     private By postCodePath                     = By.xpath(".//*[@id='billing_postcode']");
     private By phonePath                        = By.xpath(".//*[@id='billing_phone']");
     private By emailPath                        = By.xpath(".//*[@id='billing_email']");
-    private By frameNumberCartPath              = By.xpath(".//iframe[@name='__privateStripeFrame8']");
-    private By numberCartPath                   = By.xpath(".//*[@name='cardnumber']");
-    private By frameExpirationDataPath          = By.xpath(".//iframe[@name='__privateStripeFrame9']");
+    private By frameNumberCartPath              = By.xpath(".//*[@id='stripe-card-element']/div/iframe");
+    private By numberCartPath                   = By.xpath(".//*[@name='cardnumber' and contains(@class, 'Input')]");
+    private By frameExpirationDataPath          = By.xpath("//*[@id='stripe-exp-element']/div/iframe");
     private By expirationDatePath               = By.xpath(".//span/input[@name='exp-date']");
-    private By frameCvcPath                     = By.xpath(".//iframe[@name='__privateStripeFrame10']");
+    private By frameCvcPath                     = By.xpath("//*[@id='stripe-cvc-element']/div/iframe");
     private By cvcPath                          = By.xpath(".//span/input[@name='cvc']");
     private By checkboxAcceptRegulationsPath    = By.xpath(".//*[@id='terms']");
     private By buttonBuyAndPayPath              = By.xpath(".//button[@id='place_order']");
@@ -47,17 +47,17 @@ public class PaymentPage extends BasePage {
 
     public PaymentPage fillPaymentDetails(String firstName, String lastName, String countryCode, String address,
                                           String city, String region, String postCode, String phoneNumber, String email) {
-        wait.until(ExpectedConditions.elementToBeClickable(firstNamePath)).sendKeys(firstName);
-        wait.until(ExpectedConditions.elementToBeClickable(lastNamePath)).sendKeys(lastName);
-        wait.until(ExpectedConditions.elementToBeClickable(countryContainerPath)).click();
+        sendKeys (driver, 15, ExpectedConditions.elementToBeClickable (firstNamePath), firstNamePath, firstName);
+        sendKeys (driver, 10, ExpectedConditions.elementToBeClickable (lastNamePath), lastNamePath, lastName);
+        click (driver, 10, ExpectedConditions.elementToBeClickable (countryContainerPath), countryContainerPath);
         By countryPath = By.xpath(countryLocator.replace("<countryCode>", countryCode));
         driver.findElement(countryPath).click();
-        wait.until(ExpectedConditions.elementToBeClickable(addressPath)).sendKeys(address);
-        wait.until(ExpectedConditions.elementToBeClickable(cityPath)).sendKeys(city);
-        wait.until(ExpectedConditions.elementToBeClickable(regionPath)).sendKeys(region);
-        wait.until(ExpectedConditions.elementToBeClickable(postCodePath)).sendKeys(postCode);
-        wait.until(ExpectedConditions.elementToBeClickable(phonePath)).sendKeys(phoneNumber);
-        wait.until(ExpectedConditions.elementToBeClickable(emailPath)).sendKeys(email);
+        sendKeys (driver, 10, ExpectedConditions.elementToBeClickable (addressPath), addressPath, address);
+        sendKeys (driver, 10, ExpectedConditions.elementToBeClickable (cityPath), cityPath, city);
+        sendKeys (driver, 10, ExpectedConditions.elementToBeClickable (regionPath), regionPath, region);
+        sendKeys (driver, 10, ExpectedConditions.elementToBeClickable (postCodePath), postCodePath, postCode);
+        sendKeys (driver, 10, ExpectedConditions.elementToBeClickable (phonePath), phonePath, phoneNumber);
+        sendKeys (driver, 10, ExpectedConditions.elementToBeClickable (emailPath), emailPath, email);
         return this;
     }
 
@@ -82,7 +82,7 @@ public class PaymentPage extends BasePage {
 
     public PaymentPage checkboxAcceptanceOfRegulations(Boolean isSelected) {
         if (isSelected) {
-            wait.until(ExpectedConditions.elementToBeClickable(checkboxAcceptRegulationsPath)).click();
+            click (driver, 10, ExpectedConditions.elementToBeClickable (checkboxAcceptRegulationsPath), checkboxAcceptRegulationsPath);
         }
         return this;
     }
@@ -96,10 +96,6 @@ public class PaymentPage extends BasePage {
         return driver.findElement(paymentMethodPath).getText();
     }
 
-    public String generatedEmail() {
-        return "test" + new Random().nextInt () + "@wp.pl";
-    }
-
     private void switchToDefaultContentAndFrame(By framePath) {
         driver.switchTo().defaultContent();
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt((framePath)));
@@ -107,7 +103,7 @@ public class PaymentPage extends BasePage {
 
     public PaymentPage createAccount(String password) {
         driver.findElement(checkboxCreateAccountPath).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(passwordNewUserPath)).sendKeys(password);
+        sendKeys (driver, 10, ExpectedConditions.visibilityOfElementLocated (passwordNewUserPath), passwordNewUserPath,password );
         return this;
     }
 
@@ -117,10 +113,10 @@ public class PaymentPage extends BasePage {
     }
 
     public PaymentPage loginAsUser(String existentEmail, String existentEmailPassword) {
-        wait.until(ExpectedConditions.elementToBeClickable(showLoginPath)).click();
-        wait.until(ExpectedConditions.elementToBeClickable(usernamePath)).sendKeys(existentEmail);
-        wait.until(ExpectedConditions.elementToBeClickable(passwordPath)).sendKeys(existentEmailPassword);
-        wait.until(ExpectedConditions.elementToBeClickable(buttonLoginPath)).click();
+        click (driver, 10, ExpectedConditions.elementToBeClickable (showLoginPath), showLoginPath);
+        sendKeys (driver, 10, ExpectedConditions.visibilityOfElementLocated (usernamePath), usernamePath,existentEmail);
+        sendKeys (driver, 10, ExpectedConditions.visibilityOfElementLocated (passwordPath), passwordPath,existentEmailPassword);
+        click (driver, 10, ExpectedConditions.elementToBeClickable (buttonLoginPath), buttonLoginPath);
         return this;
     }
 }
