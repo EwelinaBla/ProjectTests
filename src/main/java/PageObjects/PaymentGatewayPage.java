@@ -25,7 +25,7 @@ public class PaymentGatewayPage extends BasePage {
         wait.until(ExpectedConditions.urlContains("zamowienie/#"));
         switchToFrameSecure(firstSecureFramePath);
 
-        if( driver.findElement (secondSecureFramePath).getAttribute ("class")=="AuthorizeWithUrlApp-content"){
+        if( driver.findElement (secondSecureFramePath).getAttribute ("class").equals ("AuthorizeWithUrlApp-content")){
             switchToFrameSecure(secondSecureFramePath);
             switchToFrameSecure(thirdSecureFramePath);
         } else
