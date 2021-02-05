@@ -9,7 +9,8 @@ public class PaymentTests extends BaseTest {
 
     @Test
     public void buyWithoutAccountTest() {
-        CategoryPage categoryPage = (CategoryPage) new CategoryPage(driver).goTo(configuration.getBaseUrl()+ testData.getTestData().getCategoryUrl());
+        CategoryPage categoryPage = new CategoryPage(driver);
+        categoryPage.goTo(configuration.getBaseUrl()+ testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
         CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
@@ -36,7 +37,8 @@ public class PaymentTests extends BaseTest {
 
     @Test
     public void buyWithCreateAccountTest() {
-        CategoryPage categoryPage = (CategoryPage) new CategoryPage(driver).goTo(configuration.getBaseUrl()+testData.getTestData().getCategoryUrl());
+        CategoryPage categoryPage = new CategoryPage(driver);
+        categoryPage.goTo(configuration.getBaseUrl()+testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
         CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
@@ -70,7 +72,8 @@ public class PaymentTests extends BaseTest {
 
     @Test
     public void buyWithExistingAccountTest() {
-        CategoryPage categoryPage = (CategoryPage) new CategoryPage(driver).goTo(configuration.getBaseUrl()+testData.getTestData().getCategoryUrl());
+        CategoryPage categoryPage = new CategoryPage(driver);
+        categoryPage.goTo(configuration.getBaseUrl()+testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
         CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
@@ -92,7 +95,8 @@ public class PaymentTests extends BaseTest {
 
     @Test
     public void fieldValidationOnTheOrderFormTest() {
-        CategoryPage categoryPage = (CategoryPage) new CategoryPage(driver).goTo(configuration.getBaseUrl()+testData.getTestData().getCategoryUrl());
+        CategoryPage categoryPage = new CategoryPage(driver);
+        categoryPage.goTo(configuration.getBaseUrl()+testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
         CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
@@ -110,7 +114,8 @@ public class PaymentTests extends BaseTest {
 
     @Test
     public void summaryOrderTest() {
-        CategoryPage categoryPage = (CategoryPage) new CategoryPage(driver).goTo(configuration.getBaseUrl()+testData.getTestData().getCategoryUrl());
+        CategoryPage categoryPage = new CategoryPage(driver);
+        categoryPage.goTo(configuration.getBaseUrl()+testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
         CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
 
@@ -163,7 +168,8 @@ public class PaymentTests extends BaseTest {
 
     @Test
     public void wrongEmailTest() {
-        CategoryPage categoryPage = (CategoryPage) new CategoryPage(driver).goTo(configuration.getBaseUrl()+testData.getTestData().getCategoryUrl());
+        CategoryPage categoryPage = new CategoryPage(driver);
+        categoryPage.goTo(configuration.getBaseUrl()+testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
         CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();
@@ -191,7 +197,8 @@ public class PaymentTests extends BaseTest {
 
     @Test
     public void wrongPhoneNumberTest() {
-        CategoryPage categoryPage = (CategoryPage) new CategoryPage(driver).goTo(configuration.getBaseUrl()+testData.getTestData().getCategoryUrl());
+        CategoryPage categoryPage = new CategoryPage(driver);
+        categoryPage.goTo(configuration.getBaseUrl()+testData.getTestData().getCategoryUrl());
         categoryPage.footerAlertPage.close();
         CartPage cartPage = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart();
         PaymentPage paymentPage = cartPage.goToCash();

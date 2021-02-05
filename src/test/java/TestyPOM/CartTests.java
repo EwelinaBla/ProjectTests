@@ -10,7 +10,8 @@ public class CartTests extends BaseTest {
 
     @Test
     public void addOneProductToCartFromProductPageTest() {
-        ProductPage productPage = (ProductPage) new ProductPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getProductUrl());
+        ProductPage productPage = new ProductPage(driver);
+        productPage.goTo(configuration.getBaseUrl() + testData.getTestData().getProductUrl());
         productPage.footerAlertPage.close();
         boolean isProductInCart = productPage.addToCart().viewCart().isProductInCart(testData.getTestData().getProductId());
 
@@ -20,7 +21,8 @@ public class CartTests extends BaseTest {
 
     @Test
     public void addOneProductToCartFromCategoryPageTest() {
-        CategoryPage categoryPage = (CategoryPage) new CategoryPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getFirstCategoryUrl());
+        CategoryPage categoryPage = new CategoryPage(driver);
+        categoryPage.goTo(configuration.getBaseUrl() + testData.getTestData().getFirstCategoryUrl());
         categoryPage.footerAlertPage.close();
         boolean isProductInCart = categoryPage.addToCart(testData.getTestData().getProductId()).viewCart().isProductInCart(testData.getTestData().getProductId());
 
@@ -30,7 +32,8 @@ public class CartTests extends BaseTest {
 
     @Test
     public void addFewProductsToCartFromProductPageTest() {
-        ProductPage productPage = (ProductPage) new ProductPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getProductUrl());
+        ProductPage productPage = new ProductPage(driver);
+        productPage.goTo(configuration.getBaseUrl() + testData.getTestData().getProductUrl());
         productPage.footerAlertPage.close();
         int quantityOfProduct = productPage.addToCart(testData.getTestData().getQuantity()).viewCart().getProductQuantity();
 
@@ -40,7 +43,8 @@ public class CartTests extends BaseTest {
 
     @Test
     public void addFewProductToCartFromCategoryPageTest() {
-        CategoryPage categoryPage = (CategoryPage) new CategoryPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getSecondCategoryUrl());
+        CategoryPage categoryPage = new CategoryPage(driver);
+        categoryPage.goTo(configuration.getBaseUrl() + testData.getTestData().getSecondCategoryUrl());
         categoryPage.footerAlertPage.close();
         categoryPage.addAllProductsToCart();
         categoryPage.goTo(configuration.getBaseUrl() + testData.getTestData().getThirdCategoryUrl());
@@ -53,7 +57,8 @@ public class CartTests extends BaseTest {
 
     @Test
     public void changeNumberOfProductTest() {
-        ProductPage productPage = (ProductPage) new ProductPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getProductUrl());
+        ProductPage productPage = new ProductPage(driver);
+        productPage.goTo(configuration.getBaseUrl() + testData.getTestData().getProductUrl());
         productPage.footerAlertPage.close();
         int quantityOfProduct = productPage.addToCart().viewCart().changeProductAmount(testData.getTestData().getQuantity()).getProductQuantity();
 
@@ -63,7 +68,8 @@ public class CartTests extends BaseTest {
 
     @Test
     public void removeProductFromCartTest() {
-        ProductPage productPage = (ProductPage) new ProductPage(driver).goTo(configuration.getBaseUrl() + testData.getTestData().getProductUrl());
+        ProductPage productPage = new ProductPage(driver);
+        productPage.goTo(configuration.getBaseUrl() + testData.getTestData().getProductUrl());
         productPage.footerAlertPage.close();
         Boolean cartIsEmpty = productPage.addToCart()
                 .viewCart()

@@ -13,9 +13,8 @@ public abstract class BasePage {
         this.driver = driver;
     }
 
-    public Object goTo(String url) {
+    public void goTo(String url) {
         driver.navigate ().to (url);
-        return this;
     }
 
     public String generatedEmail() {
